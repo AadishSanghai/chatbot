@@ -126,3 +126,50 @@ const handleFormSubmit = (e) => {
 promptForm.addEventListener("submit", handleFormSubmit);
 
 
+// Adding the file to the add file
+const fileInput = document.getElementById('file-input');
+        const addFileBtn = document.getElementById('add-file-btn');
+        const fileList = document.getElementById('file-list');
+        const selectedFiles = new Set();
+
+        addFileBtn.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            const files = Array.from(e.target.files);
+            
+            files.forEach(file => {
+                if (!selectedFiles.has(file.name)) {
+                    selectedFiles.add(file.name);
+                    
+                    const fileItem = document.createElement('div');
+                    fileItem.className = 'file-item';
+                    
+                    const fileName = document.createElement('span');
+                    fileName.textContent = file.name;
+                    
+                    const removeBtn = document.createElement('span');
+                    removeBtn.className = 'remove-file';
+                    removeBtn.textContent = '×';
+                    removeBtn.onclick = () => {
+                        fileItem.remove();
+                        selectedFiles.delete(file.name);
+                        if (selectedFiles.size === 0) {
+                            fileList.style.display = 'none';
+                        }
+                    };
+
+                    fileItem.appendChild(fileName);
+                    fileItem.appendChild(removeBtn);
+                    fileList.appendChild(fileItem);
+                }
+            });
+
+            if (selectedFiles.size > 0) {
+                fileList.style.display = 'block';
+            }
+            
+            // Reset file input to allow selecting the same file again
+            fileInput.value = '';
+        });
