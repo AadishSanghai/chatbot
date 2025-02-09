@@ -1,32 +1,5 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik+Distressed&display=swap');
-
-/* Font Styles */
-
-.poppins-thin {
-    font-family: "Poppins", serif;
-    font-weight: 100;
-    font-style: normal;
-}
-
-.poppins-extralight {
-    font-family: "Poppins", serif;
-    font-weight: 200;
-    font-style: normal;
-}
-
-/* ... [All other Poppins font classes] ... */
-
-.poppins-black-italic {
-    font-family: "Poppins", serif;
-    font-weight: 900;
-    font-style: italic;
-}
-
-/* Global Styles */
-
 * {
-    font-family: "Rubik Distressed", serif;
+    font-family: 'Orbitron', sans-serif;
     font-weight: 400;
     font-style: normal;
     margin: 0;
@@ -42,30 +15,31 @@
     --primary-color: #101623;
     --secondary-color: #283045; /* Added '#' for valid hex code */
     --secondary-hover-color: #333e58;
-    --scrollbar-color: #626a7f;    
+    --scrollbar-color: #626a7f;
+    --radial-start: #001f3f;
+    --radial-end: #000a1a;
 }
 
 body {
-    background: var(--primary-color);
     color: var(--text-color);
+    /* Keeping other required properties as is */
 }
 
 .container {
     overflow-y: auto;
-    max-height:calc(100vh - 127px);
+    max-height: calc(100vh - 127px);
     padding: 32px 0 60px;
     scrollbar-color: var(--scrollbar-color) transparent;
 }
 
-.container :where(.app-header, .suggestions, .prompt-wrapper, .disclaimer, .message) { /* Corrected selector */
+.container :where(.app-header, .suggestions, .prompt-wrapper, .disclaimer, .message) {
     margin: 0 auto;
-    width: 100%;
+    width: 120%;
     padding: 0 20px;
     max-width: 980px;
 }
 
 /* Header Styles */
-
 .app-header {
     margin-top: 4vh;
 }
@@ -73,89 +47,41 @@ body {
 .app-header .heading {
     font-size: 3rem;
     width: fit-content;
-    background: linear-gradient(to right, rgb(82, 82, 245), rgb(170, 61, 229));
-    background-clip: text; 
+    /* background: linear-gradient(to right, rgb(82, 82, 245), rgb(170, 61, 229)); */
+    color: aqua;
+    display: flex;
+    align-items: center;
+
+    /* background-clip: text; 
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: transparent; */
 }
 
 .app-header .sub-heading {
     font-size: 2.6rem;
     margin-top: -5px;
-    color: var(--subheading-color);
+    color: aqua;
+    /* color: var(--subheading-color); */
 }
 
-/* Suggestions List */
-
-.suggestions {
-    display: flex;
-    gap: 15px;
-    margin-top: 9.5vh;
-    list-style: none;
-    overflow-x: auto; /* Enables horizontal scrolling */
-    scrollbar-width: none; /* For Firefox */
-}
-
-/* Hide Scrollbar for Webkit Browsers */
-.suggestions::-webkit-scrollbar {
-    display: none;
-}
-
-.suggestions-item {
-    width: 228px;
-    padding: 22px; /* Added 'px' unit */
-    flex-shrink: 0; 
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: space-between;
-    border-radius: 12px;
-    background: var(--secondary-hover-color);
-    transition: 0.3s ease; /* Added 's' for seconds */
-}
-
-.suggestions-item .text {
-    font-size: 1.1rem;
-}
-
-.suggestions-item .spanit { /* Changed from ID to class */
-    height: 45px;
-    width: 45px;
-    margin-top: 35px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    color: rgb(82, 82, 245);
-    background: var(--primary-color);
-}
-
-/* Specific Icon Colors */
-.suggestions-item:nth-child(2) .spanit {
-    color: green; /* Fixed 'colour' to 'color' */
-}
-
-.suggestions-item:nth-child(3) .spanit {
-    color: yellow;
-}
-
-.suggestions-item:nth-child(4) .spanit {
-    color: purple;
-}
 
 /* Chats Container */
-
 .chats-container {
     color: #6f42c1;
+    width: 100%;
+    height: 100%;
 }
+
 .chats-container .bot-message.loading .avatar {
     animation: rotate 3s linear infinite;
 }
+
 @keyframes rotate {
-    100%{
+    100% {
         transform: rotate(360deg);
     }
 }
+
 .message {
     display: flex;
     gap: 20px;
@@ -179,12 +105,14 @@ body {
     background: var(--secondary-color);
     border: 1px solid var(--secondary-hover-color);
 }
+
 .bot-message .message-text {
     color: white;
     /* background-color: #333; Optional: Set a dark background for the bot's message */
-    border-radius: 5px; /* Optional: For rounded corners */
-    padding: 5px 10px; /* Optional: For padding around the text */
+    border-radius: 5px; 
+    padding: 5px 10px;
 }
+
 .bot-message {
     margin: 9px auto;
 }
@@ -198,11 +126,10 @@ body {
     padding: 12px 16px;
     max-width: 75%;
     background: var(--secondary-color);
-    border-radius: 13px; /* Simplified border-radius */
+    border-radius: 13px;
 }
 
 /* Prompt Container */
-
 .prompt-container {
     position: fixed;
     bottom: 0;
@@ -212,9 +139,9 @@ body {
     background: var(--primary-color);
 }
 
-.prompt-wrapper, 
-.prompt-form, 
-.prompt-actions { /* Corrected selectors */
+.prompt-wrapper,
+.prompt-form,
+.prompt-actions {
     display: flex;
     gap: 12px;
     height: 56px;
@@ -228,7 +155,7 @@ body {
     background: var(--scrollbar-color);
 }
 
-.prompt-input { /* Fixed class name from 'prmpt-input' to 'prompt-input' */
+.prompt-input {
     height: 100%;
     width: 100%;
     background: none;
@@ -243,10 +170,9 @@ body {
     color: var(--placeholder-color);
 }
 
-
 .prompt-wrapper button {
     width: 56px;
-    height: 100%; /* Fixed typo from 'heigth' to 'height' */
+    height: 100%;
     border: none;
     cursor: pointer;
     border-radius: 50%;
@@ -266,16 +192,18 @@ body {
     height: 45px;
     width: 45px;
 }
-.prompt-wrapper .prompt-form :where(.file-upload-wrapper,button,img){
+
+.prompt-wrapper .prompt-form :where(.file-upload-wrapper, button, img) {
     position: relative;
     height: 45px;
     width: 45px;
 }
+
 .prompt-wrapper button:hover {
     background: var(--secondary-hover-color);
 }
 
-#send-prompt-btn { /* IDs should be unique, ensure only one element has this ID */
+#send-prompt-btn {
     color: white;
     background: rgb(91, 91, 230);
 }
@@ -284,32 +212,33 @@ body {
     background-color: #0264e3;
 }
 
-.prompt-form .file-upload-wrapper :where(button,img){
-    position : absolute;
+.prompt-form .file-upload-wrapper :where(button, img) {
+    position: absolute;
     border-radius: 50%;
     object-fit: cover;
 }
-   
+
 .prompt-form .file-upload-wrapper.active #add-file-btn,
-.prompt-form .file-upload-wrapper.active img, 
-.prompt-form .file-upload-wrapper.active:hover
-#cancel-file-btn{
-    display:block;
+.prompt-form .file-upload-wrapper.active img,
+.prompt-form .file-upload-wrapper.active:hover #cancel-file-btn {
+    display: block;
 }
 
-.prompt-form .file-upload-wrapper.active #add-file-btn{
+.prompt-form .file-upload-wrapper.active #add-file-btn {
     display: none;
 }
-.prompt-form #cancel-file-btn{
+
+.prompt-form #cancel-file-btn {
     color: red;
 }
 
-.disclaimer { /* Corrected to match HTML class */
+.disclaimer {
     text-align: center;
     font-size: 0.9rem;
     padding: 16px 20px 0;
     color: var(--placeholder-color);
-} 
+}
+
 /* File Upload Wrapper */
 .file-upload-wrapper {
     position: relative;

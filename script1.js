@@ -109,7 +109,7 @@ const handleFormSubmit = (e) => {
 
     // Generate bot message HTML and add it to the chats container after a short delay
     setTimeout(() => {
-        const botMsgHTML = `<img src="gemini.svg" alt="gemini" class="avatar"> <p class="message-text">Just a moment....</p>`;
+        const botMsgHTML = `<img src="https://e7.pngegg.com/pngimages/571/686/png-clipart-jarvis-logo-edwin-jarvis-iron-man-youtube-marvel-cinematic-universe-male-jarvis-ui-comics-superhero-thumbnail.png" alt="jarvis" class="avatar"> <p class="message-text">Just a moment....</p>`;
         const botMsgDiv = createMsgElement(botMsgHTML, "bot-message", "loading");
         chatsContainer.appendChild(botMsgDiv);
 
@@ -174,4 +174,3 @@ const fileInput = document.getElementById('file-input');
             fileInput.value = '';
         });
 
-        
